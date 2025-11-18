@@ -1,2 +1,6 @@
 # HP8563E_Reading_Trace_Data
 Code to read the tracedata of a HP8563E (or others of that era) spectrum analyser using python and a Prologix GPIB adapter
+
+This is for one of the older era but still perfectly good Hewlett Packard spectrum analyers. Should work with other HP856* and HP859* series too, although I've not tried it. Note, this was before SCPI commands were standardised, so it uses HP's own. At the moment it just plots the result on the a graph, but I intend to add to this to save the data to a file and/or copy to clipboard
+
+A few known issues. It hangs sometimes as I think the analyser sends a "." in the wrong place. Generally there are seven ascii characters per value, for example: "-", "8", "5", ".", "0", "0", ",". That sometimes slips as I just scan the data stream for required values and offset the pointer by seven. A better way would be to detect the "." or "," and strip those away. For another day. I also found that USB hub I use between my mac and the spectrum analyser occassionally needs to be reset. Most of the time the Prologix adpater appeared as ASRL3. Occassionally it appears as ASRL6 and communication cannot be reistablished. Resetting the hub fixed this. This address is probably vary depending on what/how many USB devices you have connected. 
